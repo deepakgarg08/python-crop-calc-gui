@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        input[type=number] {
+
+            padding: 12px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+            width: 115px;
+        }
+
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        body {
+            /* background-image: url("2.jpg"); */
+            /*background-image: url("2.jpg");*/
+            background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(55,0,0,1));
+
+            /* Full height */
+            background-repeat: no-repeat;
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-size: cover;
+        }
+
+        input[type=text] {
+            padding: 12px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+        }
+
+        input[type=submit],
+        input[type=button] {
+            background-color: rgba(255, 0, 0, 0.8);
+            /* red with opacity */
+
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        div {
+            float: center;
+            margin: auto;
+            width: 12%;
+            padding: 12px;
+        }
+
+        input[type=number] {
+
+            padding: 12px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+    </style>
+    <title>Title</title>
+</head>
+
+<body>
+    <div>
+        <label for="f2_cal">f2_cal:</label><br>
+        <input type="number" id="f2_cal" class="commonstyle" name="f2_cal" placeholder="1985-2020" min=1985
+            max=2020><br>
+        <label for="f3_cal">f3_cal:</label><br>
+        <input type="number" id="f3_cal" name="f3_cal" class="commonstyle" placeholder="1985-2020" min=1985
+            max=2020><br>
+        <label for="f1_val">f1_val:</label><br>
+        <input type="number" id="f1_val" name="f1_val" class="commonstyle" placeholder="1985-2020" min=1985
+            max=2020><br>
+        <label for="f2_val">f2_val:</label><br>
+        <input type="number" id="f2_val" name="f2_val" class="commonstyle" placeholder="1985-2020" min=1985
+            max=2020><br>
+        <label for="f3_val">f3_val:</label><br>
+        <input type="number" id="f3_val" name="f3_val" class="commonstyle" placeholder="1985-2020" min=1985
+            max=2020><br>
+        <input type="submit" value="Submit" onclick="onSubmit()">
+
+    </div>
+ 
+    <div  id= "table">
+        <table style="border: 5px solid black; text-align: center; ">
+            <tr>
+                <th></th>
+                <th>Calibration</th>
+                <th>Validation</th>
+            </tr>
+            <tr>
+                <td>F1</td>
+                <td>--</td>
+                <td id="f1val">$10000</td>
+            </tr>
+            <tr>
+                <td>F2</td>
+                <td id="f2cal">$80</td>
+                <td id="f2val">$8000</td>
+            </tr>
+            <tr>
+                <td>F3</td>
+                <td id="f3cal">$80</td>
+                <td id="f3val">$804</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+
+        function onSubmit() {
+            let formjson = {};
+            let f2_cal = parseInt($('#f2_cal').val().trim())
+            let f3_cal = parseInt($("#f3_cal").val().trim())
+            let f1_val = parseInt($("#f1_val").val().trim())
+            let f2_val = parseInt($("#f2_val").val().trim())
+            let f3_val = parseInt($("#f3_val").val().trim())
+
+            formjson.f2_cal = f2_cal;
+            formjson.f3_cal = f3_cal;
+            formjson.f1_val = f1_val;
+            formjson.f2_val = f2_val;
+            formjson.f3_val = f3_val;
+            sendJsonToDatabase(formjson)
+
+        }
+
+        function sendJsonToDatabase(formjson) {
+            // console.log('check formjson', formjson)
+
+            $.ajax({
+                async: true,
+                url: '/calc',
+                type: 'POST',
+                data: JSON.stringify(formjson),
+                dataType: 'JSON',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                success: function (result) {
+                    console.log("check response result ", result)
+                    f2cal.innerHTML = result.f2_yield_calib
+                    f3cal.innerHTML = result.f3_yield_calib
+                    f1val.innerHTML = result.f1_yield_valid
+                    f2val.innerHTML = result.f2_yield_valid
+                    f3val.innerHTML = result.f3_yield_valid
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

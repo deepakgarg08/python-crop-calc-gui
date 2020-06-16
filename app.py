@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# virtualenv==20.0.23
 # In[ ]:
 
 
