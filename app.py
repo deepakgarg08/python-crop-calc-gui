@@ -17,8 +17,7 @@
 
 
 import pandas as pd
-from flask import Flask , jsonify , request, render_template
-# from flask import get_json
+from flask import Flask  , request, render_template
 from flask_cors import CORS
 
 
