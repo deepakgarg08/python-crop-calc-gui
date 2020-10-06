@@ -30,7 +30,8 @@ CORS(app)
 @app.route("/index")
 
 def index():
-	return render_template("index.html")
+    xls = df1_Z141 = df2_Z351 = df3_Z231 = df4_Z121 = df5_Z251 = df6_Z31 = None
+    return render_template("index.html")
 
 @app.route("/upload", methods = ['GET', 'POST'])
 def uploader():
