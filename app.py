@@ -81,7 +81,8 @@ def calculateCalibrationValidation(f2_cal,f3_cal,f1_val,f2_val,f3_val):
     return res
 
 @app.route('/calc',methods=['POST'])
-def createEmp():   
+def createEmp():  
+    f2_cal = f3_cal = f1_val = f2_val = f3_val = None
     f2_cal = request.json['f2_cal']
     f3_cal = request.json['f3_cal']
     f1_val = request.json['f1_val']
