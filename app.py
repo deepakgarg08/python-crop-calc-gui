@@ -12,6 +12,7 @@
 # !python -m pip3 install -U flask-cors
 # !pip3 install flask
 # !pip3 install pandas 
+# !pip3 install xlrd
 
 
 # In[1]:
@@ -21,17 +22,14 @@ import pandas as pd
 from flask import Flask  , request, render_template
 from flask_cors import CORS
 
-
-# new_header = df.iloc[0] 
-# df = df[1:]
-# df.columns = new_header
-
 res = {}
 app = Flask(__name__)
 CORS(app)
 
 	
 @app.route("/")
+@app.route("/index")
+
 def index():
 	return render_template("index.html")
 
@@ -48,7 +46,7 @@ def uploader():
         df4_Z121 = pd.read_excel(xls, 'Sheet7')
         df5_Z251 = pd.read_excel(xls, 'Sheet14')
         df6_Z31 = pd.read_excel(xls, 'Sheet3')
-    return render_template("index.html")   
+    return render_template("upload.html")   
 
 def calculateCalibrationValidation(f2_cal,f3_cal,f1_val,f2_val,f3_val):
     #f2_yield calibration
@@ -95,15 +93,3 @@ def createEmp():
 if __name__ == '__main__':
     app.run(debug=True)
     # app.run(debug=True,host='0.0.0.0', port=3000)
-
-
-# In[ ]:
-
-
-# [f2_cal,f3_cal,f1_val,f2_val,f3_val] = int(input()),int(input()),int(input()),int(input()),int(input())
-# result = calculateCalibrationValidation(f2_cal,f3_cal,f1_val,f2_val,f3_val)
-# print(result)
-
-
-
-
