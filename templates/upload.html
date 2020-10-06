@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Fasal Project</title>
+    <style>
+        html {
+            min-height: 100%;
+        }
+
+        input[type=number] {
+
+            padding: 12px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+            width: 115px;
+        }
+
+        body {
+            background-image: linear-gradient(#00b0f0, #00b050);
+            background-repeat: no-repeat;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            font-family: sans-serif, Times, serif;
+        }
+
+        input[type=text] {
+            padding: 12px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+        }
+
+        input[type=submit],
+        input[type=button] {
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        div {
+            float: center;
+            margin: auto;
+            /*width: 12%;*/
+            padding: 2px;
+        }
+
+        input[type=number] {
+
+            padding: 6px 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+            color: green;
+            font-size: x-large;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        span#resultdata {
+            color: white;
+            font-size: 28px;
+            border: 3px solid white;
+            padding: 2px 5px 2px 5px;
+
+        }
+
+        #labelcolor {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .label {
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .category_div {
+            display: inline;
+            padding: 2px 5px 2px 5px;
+            margin: auto;
+        }
+
+        .main {
+            margin: 20px 0px 10px 0px;
+            display: block;
+        }
+
+        #dropdown-div {
+            border: 2px solid white;
+            border-radius: 6px;
+            padding: 5px 0 5px 0;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        #heading {
+            color: white;
+            font-size: 48px;
+        }
+
+        option {
+            font-size: large;
+        }
+
+        .btn {
+            font-size: 20px;
+        }
+        #form-submit-btn{
+            position: relative;
+            left: 330px;
+            top: -45px;
+        }
+        #file-upload-div {
+            padding-top: 70px;
+            justify-content: space-between;
+        }
+    </style>
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1 id="heading">
+            FASAL Project
+        </h1>
+    </div>
+    <div id="dropdown-div" style="display: flex;">
+        <div class="category_div" id="category_div"><span class="label">State:</span>
+                <select id="source" name="source"
+                    onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                    <option value="">Select State</option>
+                    <option value="delhi" id="delhi">Delhi</option>
+                    <!-- <option value="haryana">Haryana</option>
+            <option value="punjab">Punjab</option> -->
+                </select>
+        </div>
+        <div class="category_div" id="sub_category_div"><span class="label">City:</span>
+                <script type="text/javascript" language="JavaScript">
+                    document.write('<select name="status" id="status"><option value="">Select status</option></select>')
+                </script>
+        </div>
+
+        <div class="category_div" id="crop-category_div"><span class="label">Crop:</span>
+                <select id="source" name="source"
+                    onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                    <option value="">Select Crop</option>
+                    <option value="wheat">Wheat</option>
+                </select>
+        </div>
+
+        <div class="category_div" id="file-upload-div">
+            <form method="POST" action="/upload" enctype="multipart/form-data" class="submit"/>
+            <span class="label">Select File:</span><input type="file" name="file" />
+            <p><input type="submit" value="Submit" id="form-submit-btn"/></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="main">
+        
+
+        <div>
+
+            <label for="f2_cal" id="labelcolor">f2_cal:</label><br>
+
+            <input type="number" id="f2_cal" class="commonstyle" name="f2_cal" placeholder="1985-2020" value="1985"
+                min=1985 max=2020>
+            <span id="resultdata">Result</span>
+            <br>
+            <label for="f3_cal" id="labelcolor">f3_cal:</label><br>
+            <input type="number" id="f3_cal" name="f3_cal" class="commonstyle" placeholder="1985-2020" value="1985"
+                min=1985 max=2020>
+            <span id="resultdata">Result</span>
+
+            <br>
+            <label for="f1_val" id="labelcolor">f1_val:</label><br>
+            <input type="number" id="f1_val" name="f1_val" class="commonstyle" placeholder="1985-2020" value="1985"
+                min=1985 max=2020>
+            <span id="resultdata">Result</span>
+
+            <br>
+            <label for="f2_val" id="labelcolor">f2_val:</label><br>
+            <input type="number" id="f2_val" name="f2_val" class="commonstyle" placeholder="1985-2020" value="1985"
+                min=1985 max=2020>
+            <span id="resultdata">Result</span>
+
+            <br>
+            <label for="f3_val" id="labelcolor">f3_val:</label><br>
+            <input type="number" id="f3_val" name="f3_val" class="commonstyle" placeholder="1985-2020" value="1985"
+                min=1985 max=2020>
+            <span id="resultdata">Result</span>
+
+            <br>
+            <input type="submit" value="Submit" class="btn btn-primary" onclick="onSubmit()">
+        </div>
+
+    </div>
+
+    <!-- none -->
+    <div id="table" style="display:none">
+        <table style="border: 5px solid black; text-align: center; ">
+            <tr>
+                <th></th>
+                <th>Calibration</th>
+                <th>Validation</th>
+            </tr>
+            <tr>
+                <td>F1</td>
+                <td>--</td>
+                <td id="f1val">$10000</td>
+            </tr>
+            <tr>
+                <td>F2</td>
+                <td id="f2cal">$80</td>
+                <td id="f2val">$8000</td>
+            </tr>
+            <tr>
+                <td>F3</td>
+                <td id="f3cal">$80</td>
+                <td id="f3val">$804</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function dynamicdropdown(listindex) {
+            switch (listindex) {
+                case "delhi":
+                    document.getElementById("status").options[0] = new Option("Select City", "");
+                    document.getElementById("status").options[1] = new Option("Central Delhi", "delhi-ho");
+                    document.getElementById("status").options[2] = new Option("East Delhi", "east-delhi");
+                    document.getElementById("status").options[3] = new Option("South Delhi", "south-delhi");
+                    document.getElementById("status").options[4] = new Option("North Delhi", "north-delhi");
+                    document.getElementById("status").options[5] = new Option("West Delhi", "west-delhi");
+                    break;
+                case "haryana":
+                    document.getElementById("status").options[0] = new Option("Select City", "");
+                    document.getElementById("status").options[1] = new Option("Haryana BO", "haryana-bo");
+                    document.getElementById("status").options[2] = new Option("Karnal", "karnal");
+                    document.getElementById("status").options[3] = new Option("Hissar", "hissar");
+                    document.getElementById("status").options[4] = new Option("", "");
+                    document.getElementById("status").options[5] = new Option("", "");
+                    break;
+                case "punjab":
+                    document.getElementById("status").options[0] = new Option("Select City", "");
+                    document.getElementById("status").options[1] = new Option("Punajb BO", "punjab-bo");
+                    document.getElementById("status").options[2] = new Option("Patiala", "patiala");
+                    document.getElementById("status").options[3] = new Option("Amritsar", "amritsar");
+                    document.getElementById("status").options[4] = new Option("", "");
+                    document.getElementById("status").options[5] = new Option("", "");
+                    break;
+            }
+
+            return true;
+        }
+        function onSubmit() {
+
+            let formjson = {};
+            let f2_cal = parseInt($('#f2_cal').val().trim()) - 1984
+            let f3_cal = parseInt($("#f3_cal").val().trim()) - 1984
+            let f1_val = parseInt($("#f1_val").val().trim()) - 1984
+            let f2_val = parseInt($("#f2_val").val().trim()) - 1984
+            let f3_val = parseInt($("#f3_val").val().trim()) - 1984
+
+            formjson.f2_cal = f2_cal;
+            formjson.f3_cal = f3_cal;
+            formjson.f1_val = f1_val;
+            formjson.f2_val = f2_val;
+            formjson.f3_val = f3_val;
+            sendJsonToDatabase(formjson)
+
+        }
+
+        function sendJsonToDatabase(formjson) {
+
+            $.ajax({
+                async: true,
+                url: '/calc',
+                type: 'POST',
+                data: JSON.stringify(formjson),
+                dataType: 'JSON',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                success: function (result) {
+
+                    resultdata[0].innerHTML = result.f2_yield_calib
+                    resultdata[1].innerHTML = result.f3_yield_calib
+                    resultdata[2].innerHTML = result.f1_yield_valid
+                    resultdata[3].innerHTML = result.f2_yield_valid
+                    resultdata[4].innerHTML = result.f3_yield_valid
+
+
+                }
+            });
+        }
+    </script>
+    
+    <script>
+        $(function () {
+            $('.submit').on('submit', function (event) {
+                // event.preventDefault();
+                alert("File Uploaded successfully, now check the stats below");
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
