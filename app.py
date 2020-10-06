@@ -22,44 +22,17 @@ from flask import Flask  , request, render_template
 from flask_cors import CORS
 
 
-# In[2]:
-# xls, df1_Z141, df2_Z351, df3_Z231, df4_Z121, df5_Z251, df6_Z31, df = None, None, None, None, None, None, None, None
-# xls = pd.ExcelFile('Corrected.xlsx')
-# df1_Z141 = pd.read_excel(xls, 'Sheet9')
-# df2_Z351 = pd.read_excel(xls, 'Sheet17')
-# df3_Z231 = pd.read_excel(xls, 'Sheet12')
-# df4_Z121 = pd.read_excel(xls, 'Sheet7')
-# df5_Z251 = pd.read_excel(xls, 'Sheet14')
-# df6_Z31 = pd.read_excel(xls, 'Sheet3')
-# df = pd.read_excel(xls)
-
-
-# In[3]:
-
-
 # new_header = df.iloc[0] 
 # df = df[1:]
 # df.columns = new_header
+
 res = {}
-
-# In[4]:
-
-
-# df.head()
-
-
-# In[ ]:
-
-
-
-
 app = Flask(__name__)
 CORS(app)
 
 	
 @app.route("/")
 def index():
-	# return "ohh yeah!!"
 	return render_template("index.html")
 
 @app.route("/upload", methods = ['GET', 'POST'])
