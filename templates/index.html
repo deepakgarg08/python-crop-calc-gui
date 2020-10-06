@@ -153,9 +153,9 @@
                 </select>
         </div>
         <div class="category_div" id="sub_category_div"><span class="label">City:</span>
-                <script type="text/javascript" language="JavaScript">
+                <!-- <script type="text/javascript" language="JavaScript">
                     document.write('<select name="status" id="status"><option value="">Select status</option></select>')
-                </script>
+                </script> -->
         </div>
 
         <div class="category_div" id="crop-category_div"><span class="label">Crop:</span>
@@ -300,6 +300,8 @@
                     'Content-Type': 'application/json'
                 },
                 success: function (result) {
+
+                    console.log("check result index", result);
 
                     resultdata[0].innerHTML = result.f2_yield_calib
                     resultdata[1].innerHTML = result.f3_yield_calib
