@@ -293,7 +293,7 @@
         function sendJsonToDatabase(formjson) {
 
             $.ajax({
-                async: true,
+                async: false,
                 url: '/calc',
                 type: 'POST',
                 data: JSON.stringify(formjson),
