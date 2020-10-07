@@ -158,6 +158,13 @@
                 <!-- <script type="text/javascript" language="JavaScript">
                     document.write('<select name="status" id="status"><option value="">Select status</option></select>')
                 </script> -->
+                <select id="source" name="source"
+                onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                <option value="">Select City</option>
+                <option value="delhi" id="delhii">Delhi</option>
+                <!-- <option value="haryana">Haryana</option>
+        <option value="punjab">Punjab</option> -->
+            </select>
         </div>
 
         <div class="category_div" id="crop-category_div"><span class="label">Crop:</span>

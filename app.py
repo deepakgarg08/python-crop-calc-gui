@@ -50,6 +50,8 @@ def uploader():
     return render_template("upload.html")   
 
 def calculateCalibrationValidation(f2_cal,f3_cal,f1_val,f2_val,f3_val):
+    global xls, df1_Z141, df2_Z351, df3_Z231, df4_Z121, df5_Z251, df6_Z31
+
     #f2_yield calibration
     if (f2_cal):
         f2_yield = 1545.24 + float(df1_Z141.loc[f2_cal]['Z141']) * 0.3971 + float(df2_Z351.loc[f2_cal]['Z351']) * 0.1693 + f2_cal * 50.53
